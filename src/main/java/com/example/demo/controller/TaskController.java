@@ -27,10 +27,10 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Tasks>> getTaskById(@PathVariable Long id) {
+    public ResponseEntity<Tasks> getTaskById(@PathVariable Long id, Tasks task) {
 
-        log.info("CHECKINGS -->" + taskService.getAllTasks());
-        return  new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
+        log.info("CHECKINGS -->" + taskService.getTasksById(id));
+        return  new ResponseEntity<>(taskService.getTasksById(id), HttpStatus.OK);
     }
 
     @PostMapping

@@ -22,7 +22,7 @@ public class TaskService {
     }
 
     public Tasks getTasksById(Long id) {
-        return taskRepository.getById(id);
+        return taskRepository.findById(id).orElse(null);
     }
 
     public Tasks createTask(Tasks task) {
