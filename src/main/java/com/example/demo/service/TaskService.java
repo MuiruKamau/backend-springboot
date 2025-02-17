@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-
-
 import com.example.demo.Model.Tasks;
 import com.example.demo.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;

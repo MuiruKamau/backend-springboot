@@ -13,37 +13,37 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/tasks")
 @Slf4j
 public class TaskController {
 
     @Autowired
     TaskService taskService;
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     public List<Tasks> getAllTasks() {
         log.info("ALL-OBJECT" + taskService.getAllTasks());
         return taskService.getAllTasks();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Tasks> getTaskById(@PathVariable Long id, Tasks task) {
 
         log.info("CHECKINGS -->" + taskService.getTasksById(id));
         return  new ResponseEntity<>(taskService.getTasksById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("create")
     public ResponseEntity<Tasks> createTask(@RequestBody Tasks task) {
         return new ResponseEntity<>(taskService.createTask(task), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Tasks> updateTask(@PathVariable Long id,@RequestBody Tasks task) {
         return ResponseEntity.ok(taskService.updateTask(id, task));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
